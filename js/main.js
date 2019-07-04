@@ -4,7 +4,8 @@ function  toFlag() {
 
 function  toForm() {
     console.log("form")
-    var msg='<div ><form><label>姓名：</label><input type="text" class=""></form></div>';
+    var msg='<div><form><label>姓名：</label><input type="text" class=""></form></div>';
+
     bootbox.dialog({
         title: "",
         message: msg,
