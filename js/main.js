@@ -3,7 +3,6 @@ function  toFlag() {
 }
 
 function  toForm() {
-    console.log("form")
     var msg='<form id="infos" action="" method="post">' +
         '<label>姓名：</label><input type="text" name="name" /><br/>' +
         '<label>电话：</label><input type="text" name="phone" maxlength="11" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" /><br/>' +
