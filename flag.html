@@ -11,7 +11,7 @@
 <div class="page-content">
     <div>
         <div class="text-flag">
-            <span>恭喜你成为了第<span>xx</span>位校旗传递者，分享好友接力</span>
+            <span>恭喜你成为了第<span id="rank">xx</span>位校旗传递者，分享好友接力</span>
         </div>
         <div class="main-content"></div>
 
@@ -32,7 +32,7 @@
 <script src="js/main.js"></script>
 <script>
     $(function(){
-
+        getRank();
         getRandom();
 
     });

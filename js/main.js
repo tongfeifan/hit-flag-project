@@ -33,6 +33,16 @@ function  toForm() {
     });
 }
 
+function getRank(){
+    $.ajax({
+        url:"http://47.101.11.38/api/incrementAndGet",
+        type:"get",
+        dataType:"json",
+        success:function(returnData){
+            $("#rank").value=returnData;
+        }
+    })
+}
 function getRandom(){
     var text_arr=["你好","我好","大家好","上班","太累","回家睡"];
     var n=Math.floor(Math.random()*6);
