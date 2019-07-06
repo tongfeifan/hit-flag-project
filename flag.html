@@ -10,17 +10,19 @@
 <div class="page-content">
     <div>
         <div class="text-flag">
+
             <span>恭喜你成为了第<span>xx</span>位校旗传递者，分享好友接力</span>
+
         </div>
-        <div class="main-content">
-            又一个图图图
-        </div>
+        <div class="main-content"></div>
 
     </div>
     <div class="bottom-button">
         <div class="btn-group">
-        <button class="btn-primary short" onclick="downPicture()">保存图片</button>
-        <button class="btn-refresh short" onclick="toFlag()">再传一次</button>
+            <button class="btn-primary short" onclick="downPicture()" id="down">
+                <a href="img/0.jpg" download="ss">保存图片</a>
+            </button>
+            <button class="btn-refresh short" onclick="toFlag()">再传一次</button>
         </div>
     </div>
 </div>
@@ -29,3 +31,10 @@
 
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+    $(function(){
+
+        getRandom();
+
+    });
+</script>
