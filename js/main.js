@@ -86,4 +86,19 @@ function downPicture(){
 
 }
 
+$(function(){
+    
+    var imgUrl = 'img/long_pic.jpg';
+    var imgObject = new Image();
+    imgObject.src = imgUrl;
+
+    imgObject.onload = function(){
+        var ele = document.querySelector('.thumbnails');
+        ele.setAttribute('src', imgUrl);
+        ele.setAttribute('class', 'thumbnails complete');
+    };
+ 
+});
+
+    
 
