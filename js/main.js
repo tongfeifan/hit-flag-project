@@ -12,7 +12,7 @@ function  toForm() {
                     '<option value="3">校友协会</option>' +
                     '<option value="4">校友个人</option>' +
                     '</select><br/>' +
-        '<label>自荐理由：</label><textarea class="form-control" rows="4" cols="50" name="reason" /><br/>' +
+        '<label>自荐理由：</label><textarea class="form-control" rows="3" cols="30" name="reason" /><br/>' +
         '</form>'
 
     bootbox.dialog({
@@ -24,7 +24,7 @@ function  toForm() {
             },
             success: {
                 label: "确认提交",
-                className: "btn-primary",
+                className: "btn-flag",
                 callback: function (result) {
                     if(result) {
                         var model = {};
@@ -55,7 +55,7 @@ function getRank(){
         type:"get",
         dataType:"json",
         success:function(returnData){
-            $("#rank").value=returnData;
+            $("#rank").value=returnData.Data;
         }
     })
 }
@@ -68,26 +68,8 @@ function getRandom(){
     $(".main-content").append(str);
 }
 
-function downPicture(){
-    console.log("picture")
-    var url='http://47.101.11.38/img/0.jpg'
-    // var download=plus.downloader.createDownload(url, {}, function(d,status){
-    //     // 下载完成
-    //     if(status == 200){
-    //         alert("Download success: " + d.filename);
-    //     } else {
-    //         alert("Download failed: " + status);
-    //     }
-    // });
-    // download.start();
-
-    // var str="<a href="+url+" download='HITflag'></a>"
-    // $("#down").append(str)
-
-}
-
 $(function(){
-    
+
     var imgUrl = 'img/long_pic.jpg';
     var imgObject = new Image();
     imgObject.src = imgUrl;

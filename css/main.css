@@ -7,29 +7,33 @@ body{
     background: #f5f5f5;
 }
 .page-content{
-    width:97%;
+    width:100%;
     height:100%;
     margin:0 auto;
+}
+.main{
+    margin-bottom:65px;
 }
 .main-content{
     margin:20px 10px;
     height:100%;
-    background:#fff;
+    text-align:center;
 }
 .form-btn{
     display:flex;
     justify-content:flex-end;
     color:#409eff;
+    margin-right:5px;
 }
 .bottom-button {
     position:fixed;
-    bottom:5px;
-    width:97%;
+    bottom:0;
+    width:100%;
+    background: #fff;
 }
-button{
+.btn-a{
     border:0;
     height:45px;
-    margin:0 auto;
     font-size:20px;
 }
 .btn-group{
@@ -37,7 +41,7 @@ button{
     display:flex;
     justify-content:space-between;
 }
-.btn-primary{
+.btn-flag{
     background:#409eff;
     color:#fff;
 }
