@@ -61,7 +61,7 @@ button{
 .thumbnails{
     z-index: 1;
     filter: blur(4px);
-    transition: all 0.7s;
+    transition: all 0.4s;
 }
 .complete{
     filter: blur(0);
