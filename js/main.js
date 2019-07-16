@@ -61,10 +61,15 @@ function getRank(){
     })
 }
 function getRandom(rank){
-    var text_arr=["你好","我好","大家好","上班","太累","回家睡"];
-    var n=Math.floor(Math.random()*6);
+    var text_arr=[
+        "学霸手贱，发射了一枚火箭把太阳弄灭了。”安息吧,人类”!!!校旗传递0KM。",
+        "高考填报了软件工程专业，大学四年没有找到女朋友，校旗传递0KM",
+        
+        "你好","我好","大家好","上班","太累","回家睡"
+    ];
+    var n=Math.floor(Math.random()*4);
     console.log(text_arr[n]);
-    var imgNo="0"+".jpg";
+    var imgNo=n+".jpg";
     let img = document.getElementById("random-img");
 
     let mc = new window.MCanvas.default({
@@ -80,11 +85,11 @@ function getRandom(rank){
         color:'#000000',
         type:'origin',
     })
-        .text('郭晓东<br><s>' + text_arr[n] + ', 成为第'+ rank +'位校旗传递者</s>',{
+        .text('郭晓东，' + text_arr[n] + ', 成为第'+ rank +'位校旗传递者',{
             width:'300px',
             align:'center',
             pos:{
-                x:200,
+                x:250,
                 y:50,
             },
         })
@@ -94,6 +99,32 @@ function getRandom(rank){
 
             console.log(b64);
         });
+    shareSet(rank, text_arr)
+
+}
+
+function shareSet(rank, desc) {
+    wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+        wx.showOptionMenu();
+        wx.updateAppMessageShareData({
+            title: '我是第'+rank+'位为哈工大百年校庆传旗的校友', // 分享标题
+            desc: desc, // 分享描述
+            link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '', // 分享图标
+            success: function () {
+                // 设置成功
+            }
+        });
+        wx.updateTimelineShareData({
+            title: '我是第'+rank+'位为哈工大百年校庆传旗的校友' + desc, // 分享标题
+            link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '', // 分享图标
+            success: function () {
+                // 设置成功
+            }
+        })
+    });
+
 }
 
 function weixinInit() {
@@ -114,31 +145,9 @@ function weixinInit() {
                     'showOptionMenu'
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
-
-            wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
-                wx.showOptionMenu();
-                wx.updateAppMessageShareData({
-                    title: '我是第xx位为哈工大百年校庆传旗的校友', // 分享标题
-                    desc: '我传递了xxxkm', // 分享描述
-                    link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                    imgUrl: '', // 分享图标
-                    success: function () {
-                        // 设置成功
-                    }
-                });
-                wx.updateTimelineShareData({
-                    title: '我是第xx位为哈工大百年校庆传旗的校友，我传递了xxxkm', // 分享标题
-                    link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                    imgUrl: '', // 分享图标
-                    success: function () {
-                        // 设置成功
-                    }
-                })
-            });
-
-
         }
     })
+    getRank()
 
 }
 
