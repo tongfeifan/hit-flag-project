@@ -92,7 +92,7 @@ function getRandom(rank){
         type:'origin',
     })
         .text('<b>' + name +'</b>'+ text + '成为第'+ rank +'位校旗传递者。',{
-            width:'330px',
+            width:'350px',
             align:'left',
             normalStyle: {
 
@@ -103,11 +103,11 @@ function getRandom(rank){
             largeStyle: {
 
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: 'bold 35px/5px Arial, Helvetica, sans-serif',
+                font: 'italic bold 35px/5px Arial, Helvetica, sans-serif',
                 color:'#2A4963',
             },
             pos:{
-                x:330,
+                x:320,
                 y:50,
             },
         })
