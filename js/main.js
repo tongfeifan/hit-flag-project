@@ -75,8 +75,8 @@ function getRandom(rank){
     console.log(text_arr[n]);
     var imgNo=n+".jpg";
     let img = document.getElementById("random-img");
-
-    var text = '童飞帆' + text_arr[text_n];
+    var name = '童飞帆';
+    var text = text_arr[text_n];
 
     let mc = new window.MCanvas.default({
         width: 1000,
@@ -91,17 +91,23 @@ function getRandom(rank){
         color:'#000000',
         type:'origin',
     })
-        .text(text + '成为第'+ rank +'位校旗传递者。',{
+        .text('<b>' + name +'</b>'+ text + '成为第'+ rank +'位校旗传递者。',{
             width:'330px',
             align:'left',
             normalStyle: {
 
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: '35px/5px Arial, Helvetica, sans-serif',
+                font: 'bold 35px/5px Arial, Helvetica, sans-serif',
+                color:'#2A4963',
+            },
+            largeStyle: {
+
+                // 文字样式，包含字体/字号等，使用方式与css font一致；
+                font: 'bold 35px/5px Arial, Helvetica, sans-serif',
                 color:'#2A4963',
             },
             pos:{
-                x:320,
+                x:330,
                 y:50,
             },
         })
@@ -128,7 +134,7 @@ function shareSet(rank, desc) {
             }
         });
         wx.updateTimelineShareData({
-            title: '我是第'+rank+'位为哈工大百年校庆传旗的校友' + desc, // 分享标题
+            title: '我是第'+rank+'位为哈工大百年校庆传旗的校友，' + desc, // 分享标题
             link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
             imgUrl: '', // 分享图标
             success: function () {
