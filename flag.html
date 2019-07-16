@@ -13,7 +13,9 @@
         <div class="text-flag">
             <span>恭喜你成为了第<span id="rank">xx</span>位校旗传递者，分享好友接力</span>
         </div>
-        <div class="main-content"></div>
+        <div class="main-content">
+            <img crossorigin="anonymous" id="random-img" class='img-flag' width='97%' height='100%' >
+        </div>
 
     </div>
     <div class="bottom-button">
@@ -26,11 +28,15 @@
 </body>
 </html>
 
+<script type="text/javascript" src="js/mcanvas.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/main.js"></script>
 <script>
     $(function(){
         getRank();
         getRandom();
+        weixinInit();
+
     });
 </script>
