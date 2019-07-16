@@ -80,11 +80,11 @@ function getRandom(rank){
         color:'#000000',
         type:'origin',
     })
-        .text('<s>' + text_arr[n] + ', 成为第'+ rank +'位校旗传递者</s>',{
+        .text('郭晓东<br><s>' + text_arr[n] + ', 成为第'+ rank +'位校旗传递者</s>',{
             width:'300px',
             align:'center',
             pos:{
-                x:250,
+                x:200,
                 y:50,
             },
         })
