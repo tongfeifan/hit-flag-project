@@ -55,11 +55,12 @@ function getRank(){
         type:"get",
         dataType:"json",
         success:function(returnData){
-            $("#rank").value=returnData.Data;
+            // $("#rank").value=returnData.Data;
+            getRandom(returnData.Data);
         }
     })
 }
-function getRandom(){
+function getRandom(rank){
     var text_arr=["你好","我好","大家好","上班","太累","回家睡"];
     var n=Math.floor(Math.random()*6);
     console.log(text_arr[n]);
@@ -79,12 +80,12 @@ function getRandom(){
         color:'#000000',
         type:'origin',
     })
-        .text('郭晓东<br><s>' + text_arr[n] + '</s>',{
+        .text('郭晓东<br><s>' + text_arr[n] + ', 成为第'+ rank +'位校旗传递者</s>',{
             width:'300px',
             align:'center',
             pos:{
-                x:0,
-                y:0,
+                x:200,
+                y:50,
             },
         })
         .draw( b64 =>{
