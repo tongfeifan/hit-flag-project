@@ -56,7 +56,7 @@ function getRank(){
         dataType:"json",
         success:function(returnData){
             // $("#rank").value=returnData.Data;
-            getRandom(returnData.Data);
+            getRandom(returnData.data.count);
         }
     })
 }
@@ -80,11 +80,11 @@ function getRandom(rank){
         color:'#000000',
         type:'origin',
     })
-        .text('郭晓东<br><s>' + text_arr[n] + ', 成为第'+ rank +'位校旗传递者</s>',{
+        .text('<s>' + text_arr[n] + ', 成为第'+ rank +'位校旗传递者</s>',{
             width:'300px',
             align:'center',
             pos:{
-                x:200,
+                x:250,
                 y:50,
             },
         })
