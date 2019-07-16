@@ -76,7 +76,7 @@ function getRandom(rank){
     var imgNo=n+".jpg";
     let img = document.getElementById("random-img");
 
-    var text = '童飞帆' + text_arr[text_n]
+    var text = '童飞帆' + text_arr[text_n];
 
     let mc = new window.MCanvas.default({
         width: 1000,
@@ -92,16 +92,16 @@ function getRandom(rank){
         type:'origin',
     })
         .text(text + '成为第'+ rank +'位校旗传递者。',{
-            width:'320px',
+            width:'330px',
             align:'left',
             normalStyle: {
 
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: '13px/22px Arial, Helvetica, sans-serif',
+                font: '35px/5px Arial, Helvetica, sans-serif',
                 color:'#2A4963',
             },
             pos:{
-                x:300,
+                x:320,
                 y:50,
             },
         })
