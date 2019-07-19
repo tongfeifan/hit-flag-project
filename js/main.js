@@ -129,7 +129,7 @@ function getRandom(rank){
             },
             pos:{
                 x:320,
-                y:50,
+                y:25,
             },
         })
         .draw( b64 =>{
