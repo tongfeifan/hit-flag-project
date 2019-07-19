@@ -115,30 +115,40 @@ function getRandom(rank){
             // console.log("4");
             img.setAttribute( 'src', b64 );
 
-            console.log(b64);
+            // console.log(b64);
         });
     shareSet(rank, text)
 
 }
 
 function shareSet(rank, desc) {
+    console.log("share set")
     wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+        console.log("wx ready")
         wx.showOptionMenu();
-        wx.updateAppMessageShareData({
+        wx.onMenuShareAppMessage({
             title: '我是第'+rank+'位为哈工大百年校庆传旗的校友', // 分享标题
             desc: desc, // 分享描述
             link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: '', // 分享图标
+            imgUrl: 'https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=cf3f2de4153853438ccf8027ab28d743/0e2442a7d933c8952b5646f3d41373f08202000a.jpg', // 分享图标
             success: function () {
+                console.log("message sucess")
                 // 设置成功
+            },
+            fail: function() {
+                console.log("message fail")
             }
         });
-        wx.updateTimelineShareData({
+        wx.onMenuShareTimeline({
             title: '我是第'+rank+'位为哈工大百年校庆传旗的校友，' + desc, // 分享标题
             link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: '', // 分享图标
+            imgUrl: 'https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=cf3f2de4153853438ccf8027ab28d743/0e2442a7d933c8952b5646f3d41373f08202000a.jpg',
             success: function () {
+                console.log("timeline succes")
                 // 设置成功
+            },
+            fail: function() {
+                console.log("timeline fail")
             }
         })
     });
@@ -151,15 +161,16 @@ function weixinInit() {
         type: "get",
         dataType: "json",
         success: function (returnData) {
+            console.log(returnData)
             wx.config({
-                debug: true,
+                debug: false,
                 appId: returnData.data.appid, // 必填，公众号的唯一标识
                 timestamp: returnData.data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: returnData.data.nonceStr, // 必填，生成签名的随机串
                 signature: returnData.data.signature, // 必填，签名，见附录1
                 jsApiList: [
-                    'updateAppMessageShareData',
-                    'updateTimelineShareData',
+                    'onMenuShareAppMessage',
+                    'onMenuShareTimeline',
                     'showOptionMenu'
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
@@ -168,7 +179,5 @@ function weixinInit() {
     })
 
 }
-
-
 
 
