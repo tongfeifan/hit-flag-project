@@ -152,11 +152,11 @@ function weixinInit() {
         dataType: "json",
         success: function (returnData) {
             wx.config({
-                debug: false,
-                appId: returnData.appid, // 必填，公众号的唯一标识
-                timestamp: returnData.timestamp, // 必填，生成签名的时间戳
-                nonceStr: returnData.nonceStr, // 必填，生成签名的随机串
-                signature: returnData.signature, // 必填，签名，见附录1
+                debug: true,
+                appId: returnData.data.appid, // 必填，公众号的唯一标识
+                timestamp: returnData.data.timestamp, // 必填，生成签名的时间戳
+                nonceStr: returnData.data.nonceStr, // 必填，生成签名的随机串
+                signature: returnData.data.signature, // 必填，签名，见附录1
                 jsApiList: [
                     'updateAppMessageShareData',
                     'updateTimelineShareData',
