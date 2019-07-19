@@ -118,13 +118,13 @@ function getRandom(rank){
             normalStyle: {
 
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: 'bold 35px/5px Arial, Helvetica, sans-serif',
+                font: 'bold 25px/5px Arial, Helvetica, sans-serif',
                 color:'#2A4963',
             },
             largeStyle: {
 
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: 'italic bold 35px/5px Arial, Helvetica, sans-serif',
+                font: 'italic bold 25px/5px Arial, Helvetica, sans-serif',
                 color:'#2A4963',
             },
             pos:{
