@@ -91,7 +91,7 @@ function getRandom(rank){
         color:'#000000',
         type:'origin',
     })
-        .text('<b>' + name +'</b>'+ text + '成为第'+ rank +'位校旗传递者。',{
+        .text('<b>' + name +'  </b>'+ text + '成为第'+ rank +'位校旗传递者。',{
             width:'350px',
             align:'left',
             normalStyle: {
@@ -163,9 +163,9 @@ function weixinInit() {
                     'showOptionMenu'
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
+            getRank()
         }
     })
-    getRank()
 
 }
 
