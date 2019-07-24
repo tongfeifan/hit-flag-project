@@ -152,6 +152,18 @@ function getRandom(rank, name){
                 y:360,
             },
         })
+        .text(''+rank, {
+            width:'260px',
+            align: 'center',
+            normalStyle: {
+                font: 'italic bold 60px Arial, Helvetica, sans-serif',
+                color: '#0e6eb8',
+            },
+            pos:{
+                x:350,
+                y:180
+            }
+        })
         .draw( b64 =>{ // console.log("4");
             img.setAttribute( 'src', b64 );
 
