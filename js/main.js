@@ -135,6 +135,7 @@ function getRandom(rank, name, head){
             pos:{
                 x:70,
                 y:100,
+                scale:0.8,
                 rotate:1,
             },
         })
