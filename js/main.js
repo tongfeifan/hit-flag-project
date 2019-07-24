@@ -132,28 +132,27 @@ function getRandom(rank, name){
         color:'#000000',
         type:'origin',
     })
-        .text('<b>' + name +'  </b>'+ text + '成为第'+ rank +'位校旗传递者。',{
-            width:'350px',
+        .text('<b>' + name +'  </b>'+ text ,{
+            width:'550px',
             align:'left',
             normalStyle: {
 
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
                 font: 'bold 25px/5px Arial, Helvetica, sans-serif',
-                color:'#2A4963',
+                color:'#FFFFFF',
             },
             largeStyle: {
 
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
                 font: 'italic bold 25px/5px Arial, Helvetica, sans-serif',
-                color:'#2A4963',
+                color:'#FFFFFF',
             },
             pos:{
-                x:320,
-                y:25,
+                x:90,
+                y:360,
             },
         })
-        .draw( b64 =>{
-            // console.log("4");
+        .draw( b64 =>{ // console.log("4");
             img.setAttribute( 'src', b64 );
 
             // console.log(b64);
@@ -197,10 +196,13 @@ function shareSet(rank, desc) {
 }
 
 function weixinInit() {
+    var url = window.location.href;
     $.ajax({
-        url: "http://hit100.socu2010.org/api/sign?url=http://hit100.socu2010.org/flag.html",
-        type: "get",
+        url: "http://hit100.socu2010.org/api/sign",
+        type: "post",
         dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({url: url}),
         success: function (returnData) {
             console.log(returnData)
             wx.config({
