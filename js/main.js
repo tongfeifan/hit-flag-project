@@ -1,87 +1,89 @@
-function  toFlag() {
+function toFlag() {
     $.ajax({
-        url:"http://hit100.socu2010.org/api/getFlagUrl",
-        type:"get",
-        dataType:"json",
+        url: "http://hit100.socu2010.org/api/getFlagUrl",
+        type: "get",
+        dataType: "json",
         contentType: "application/json",
-        success:function(returnData){
+        success: function(returnData) {
             // location.reload();
-            window.location.href=returnData.data;
+            window.location.href = returnData.data;
         }
-    })
-
+    });
 }
 
-
-function getQueryString(name)
-{
-    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if(r!=null)return  unescape(r[2]); return null;
+    if (r != null) return unescape(r[2]);
+    return null;
 }
 
-function  toForm() {
-    var msg='<form id="infos" action="" method="post">' +
+function toForm() {
+    var msg =
+        '<form id="infos" action="" method="post">' +
         '<label>姓名：</label><input class="form-control" type="text" name="name" /><br/>' +
         '<label>电话：</label><input class="form-control" type="text" name="tel" ' +
         '                       maxlength="11" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" /><br/>' +
         '<label>身份：</label><select  class="form-control" name="identity"><option value="校友赞助商">校友赞助商</option>' +
-                    '<option value="校友企业">校友企业</option>' +
-                    '<option value="校友协会">校友协会</option>' +
-                    '<option value="校友个人">校友个人</option>' +
-                    '</select><br/>' +
+        '<option value="校友企业">校友企业</option>' +
+        '<option value="校友协会">校友协会</option>' +
+        '<option value="校友个人">校友个人</option>' +
+        "</select><br/>" +
         '<label>自荐理由：</label><textarea class="form-control" rows="3" cols="30" name="reason" /><br/>' +
-        '</form>'
+        "</form>";
 
     bootbox.dialog({
         title: "",
         message: msg,
         buttons: {
             cancel: {
-                label: '取消',
+                label: "取消"
             },
             success: {
                 label: "确认提交",
                 className: "btn-flag",
-                callback: function (result) {
-                    if(result) {
+                callback: function(result) {
+                    if (result) {
                         var model = {};
                         var x = $("#infos").serializeArray();
-                        $.each(x, function (i, field) {
+                        $.each(x, function(i, field) {
                             model[field.name] = field.value;
                         });
                         $.ajax({
-                            url:"http://hit100.socu2010.org/api/register",
-                            type:"post",
-                            dataType:"json",
+                            url: "http://hit100.socu2010.org/api/register",
+                            type: "post",
+                            dataType: "json",
                             contentType: "application/json",
                             data: JSON.stringify(model),
-                            success:function(){
+                            success: function() {
                                 location.reload();
                             }
-                        })
+                        });
                     }
                 }
-            },
+            }
         }
     });
 }
 
-function getRank(){
+function getRank() {
     var code = getQueryString("code");
     $.ajax({
-        url:"http://hit100.socu2010.org/api/incrementAndGet?code=" + code,
-        type:"get",
-        dataType:"json",
-        success:function(returnData){
-
+        url: "http://hit100.socu2010.org/api/incrementAndGet?code=" + code,
+        type: "get",
+        dataType: "json",
+        success: function(returnData) {
             // $("#rank").value=returnData.Data;
-            getRandom(returnData.data.count, returnData.data.userInfoVO.nickname, returnData.data.userInfoVO.headimgurl);
+            getRandom(
+                returnData.data.count,
+                returnData.data.userInfoVO.nickname,
+                returnData.data.userInfoVO.headimgurl
+            );
         }
-    })
+    });
 }
-function getRandom(rank, name, head){
-    var text_arr=[
+function getRandom(rank, name, head) {
+    var text_arr = [
         "手贱，发射了一枚火箭把太阳弄灭了。”安息吧,人类!!!”校旗传递了0米。",
         "高考填报了软件工程专业，大学四年没有找到女朋友，校旗传递了0米。",
         "找到了志愿者筹备组，行贿了贝勒爷。校旗传递了99999公里。",
@@ -106,13 +108,12 @@ function getRandom(rank, name, head){
         "兴高采烈的揣着校旗下课，刚走出正心就滑到在熟悉的大冰出溜上，校旗和人一起滑出5米。",
         "拿上校旗从土木工程学院实验室来到阳光大厅，并把校旗挂在了主楼201讲坛的展板上，累计传递800米。",
         "背着校旗从7公寓去图书馆学了一下午工数，累计传递了512米。",
-        "和兄弟们一起去篮球场打了场球，居然忘记了传递校旗。",
-
-];
-    var text_n=Math.floor(Math.random()*26);
-    var n=Math.floor(Math.random()*19);
+        "和兄弟们一起去篮球场打了场球，居然忘记了传递校旗。"
+    ];
+    var text_n = Math.floor(Math.random() * 26);
+    var n = Math.floor(Math.random() * 19);
     console.log(text_arr[n]);
-    var imgNo=n+".jpg";
+    var imgNo = n + ".jpg";
     let img = document.getElementById("random-img");
     // var name = '童飞帆';
     var text = text_arr[text_n];
@@ -120,110 +121,110 @@ function getRandom(rank, name, head){
     let mc = new window.MCanvas.default({
         width: 1000,
         height: 1000,
-        backgroundColor: 'black',
+        backgroundColor: "black"
     });
 
     // background : 准备底图；提供多种模式
-    mc.background("http://hit100.socu2010.org/img/" + imgNo,{
-        left:0,
-        top:0,
-        color:'#000000',
-        type:'origin',
+    mc.background("http://hit100.socu2010.org/img/" + imgNo, {
+        left: 0,
+        top: 0,
+        color: "#000000",
+        type: "origin"
     })
-        .add(head,{
-            width:183,
-            pos:{
-                x:70,
-                y:100,
-                scale:0.8,
-                rotate:1,
-            },
+        .add(head, {
+            width: 183,
+            pos: {
+                x: 70,
+                y: 100,
+                scale: 0.8,
+                rotate: 1
+            }
         })
-        .text('<b>' + name +'  </b>'+ text ,{
-            width:'550px',
-            align:'left',
+        .text("<b>" + name + "  </b>" + text, {
+            width: "550px",
+            align: "left",
             normalStyle: {
-
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: 'bold 25px/5px Arial, Helvetica, sans-serif',
-                color:'#FFFFFF',
+                font: "bold 25px/5px Arial, Helvetica, sans-serif",
+                color: "#FFFFFF"
             },
             largeStyle: {
-
                 // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: 'italic bold 25px/5px Arial, Helvetica, sans-serif',
-                color:'#FFFFFF',
+                font: "italic bold 25px/5px Arial, Helvetica, sans-serif",
+                color: "#FFFFFF"
             },
-            pos:{
-                x:90,
-                y:360,
-            },
-        })
-        .text(''+rank, {
-            width:'260px',
-            align: 'center',
-            normalStyle: {
-                font: 'italic bold 60px Arial, Helvetica, sans-serif',
-                color: '#0e6eb8',
-            },
-            pos:{
-                x:350,
-                y:180
+            pos: {
+                x: 90,
+                y: 360
             }
         })
-        .text('' + name, {
-            width: '200px',
-            align: 'center',
+        .text("" + rank, {
+            width: "260px",
+            align: "center",
             normalStyle: {
-                font: 'italic bold 50px Arial, Helvetica, sans-serif',
-                color: '#0e6eb8',
+                font: "italic bold 60px Arial, Helvetica, sans-serif",
+                color: "#0e6eb8"
             },
-            pos:{
-                x:70,
-                y:300
+            pos: {
+                x: 350,
+                y: 180
             }
         })
-        .draw( b64 =>{ // console.log("4");
-            img.setAttribute( 'src', b64 );
+        .text("" + name, {
+            width: "200px",
+            align: "center",
+            normalStyle: {
+                font: "italic bold 50px Arial, Helvetica, sans-serif",
+                color: "#0e6eb8"
+            },
+            pos: {
+                x: 70,
+                y: 300
+            }
+        })
+        .draw(b64 => {
+            // console.log("4");
+            img.setAttribute("src", b64);
 
             // console.log(b64);
         });
-    shareSet(rank, text)
-
+    shareSet(rank, text);
 }
 
 function shareSet(rank, desc) {
-    console.log("share set")
-    wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
-        console.log("wx ready")
+    console.log("share set");
+    wx.ready(function() {
+        //需在用户可能点击分享按钮前就先调用
+        console.log("wx ready");
         wx.showOptionMenu();
         wx.onMenuShareAppMessage({
-            title: '我是第'+rank+'位为哈工大百年校庆传旗的校友', // 分享标题
+            title: "我是第" + rank + "位为哈工大百年校庆传旗的校友", // 分享标题
             desc: desc, // 分享描述
-            link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=cf3f2de4153853438ccf8027ab28d743/0e2442a7d933c8952b5646f3d41373f08202000a.jpg', // 分享图标
-            success: function () {
-                console.log("message sucess")
+            link: "http://hit100.socu2010.org/", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl:
+                "https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=cf3f2de4153853438ccf8027ab28d743/0e2442a7d933c8952b5646f3d41373f08202000a.jpg", // 分享图标
+            success: function() {
+                console.log("message sucess");
                 // 设置成功
             },
             fail: function() {
-                console.log("message fail")
+                console.log("message fail");
             }
         });
         wx.onMenuShareTimeline({
-            title: '我是第'+rank+'位为哈工大百年校庆传旗的校友，' + desc, // 分享标题
-            link: 'http://hit100.socu2010.org/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: 'https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=cf3f2de4153853438ccf8027ab28d743/0e2442a7d933c8952b5646f3d41373f08202000a.jpg',
-            success: function () {
-                console.log("timeline succes")
+            title: "我是第" + rank + "位为哈工大百年校庆传旗的校友，" + desc, // 分享标题
+            link: "http://hit100.socu2010.org/", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl:
+                "https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=cf3f2de4153853438ccf8027ab28d743/0e2442a7d933c8952b5646f3d41373f08202000a.jpg",
+            success: function() {
+                console.log("timeline succes");
                 // 设置成功
             },
             fail: function() {
-                console.log("timeline fail")
+                console.log("timeline fail");
             }
-        })
+        });
     });
-
 }
 
 function weixinInit() {
@@ -233,9 +234,9 @@ function weixinInit() {
         type: "post",
         dataType: "json",
         contentType: "application/json",
-        data: JSON.stringify({url: url}),
-        success: function (returnData) {
-            console.log(returnData)
+        data: JSON.stringify({ url: url }),
+        success: function(returnData) {
+            console.log(returnData);
             wx.config({
                 debug: false,
                 appId: returnData.data.appid, // 必填，公众号的唯一标识
@@ -243,15 +244,12 @@ function weixinInit() {
                 nonceStr: returnData.data.nonceStr, // 必填，生成签名的随机串
                 signature: returnData.data.signature, // 必填，签名，见附录1
                 jsApiList: [
-                    'onMenuShareAppMessage',
-                    'onMenuShareTimeline',
-                    'showOptionMenu'
+                    "onMenuShareAppMessage",
+                    "onMenuShareTimeline",
+                    "showOptionMenu"
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
-            getRank()
+            getRank();
         }
-    })
-
+    });
 }
-
-

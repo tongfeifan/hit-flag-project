@@ -12,7 +12,7 @@ body{
     margin:0 auto;
 }
 .main{
-    margin-bottom:65px;
+    margin-bottom:45px;
 }
 .main-content{
     /*margin:5px 5px;*/
@@ -20,10 +20,12 @@ body{
     text-align:center;
 }
 .form-btn{
-    display:flex;
-    justify-content:flex-end;
-    color:#409eff;
-    margin-right:5px;
+    background: #b6ac65;
+    color:#fff;
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    font-size:20px;
 }
 .bottom-button {
     position:fixed;
