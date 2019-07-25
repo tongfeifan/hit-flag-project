@@ -110,85 +110,18 @@ function getRandom(rank, name, head) {
         "背着校旗从7公寓去图书馆学了一下午工数，累计传递了512米。",
         "和兄弟们一起去篮球场打了场球，居然忘记了传递校旗。"
     ];
-    var text_n = Math.floor(Math.random() * 26);
-    var n = Math.floor(Math.random() * 19);
+    var text_n = Math.floor(Math.random() * text_arr.length);
+    var n = Math.floor(Math.random() * 19) + 1;
     console.log(text_arr[n]);
     var imgNo = n + ".jpg";
     let img = document.getElementById("random-img");
-    // var name = '童飞帆';
-    var text = text_arr[text_n];
-
-    let mc = new window.MCanvas.default({
-        width: 1000,
-        height: 1000,
-        backgroundColor: "black"
-    });
-
-    // background : 准备底图；提供多种模式
-    mc.background("http://hit100.socu2010.org/img/" + imgNo, {
-        left: 0,
-        top: 0,
-        color: "#000000",
-        type: "origin"
-    })
-        .add(head, {
-            width: 183,
-            pos: {
-                x: 70,
-                y: 100,
-                scale: 0.8,
-                rotate: 1
-            }
-        })
-        .text("<b>" + name + "  </b>" + text, {
-            width: "550px",
-            align: "left",
-            normalStyle: {
-                // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: "bold 25px/5px Arial, Helvetica, sans-serif",
-                color: "#FFFFFF"
-            },
-            largeStyle: {
-                // 文字样式，包含字体/字号等，使用方式与css font一致；
-                font: "italic bold 25px/5px Arial, Helvetica, sans-serif",
-                color: "#FFFFFF"
-            },
-            pos: {
-                x: 90,
-                y: 360
-            }
-        })
-        .text("" + rank, {
-            width: "260px",
-            align: "center",
-            normalStyle: {
-                font: "italic bold 60px Arial, Helvetica, sans-serif",
-                color: "#0e6eb8"
-            },
-            pos: {
-                x: 350,
-                y: 180
-            }
-        })
-        .text("" + name, {
-            width: "200px",
-            align: "center",
-            normalStyle: {
-                font: "italic bold 50px Arial, Helvetica, sans-serif",
-                color: "#0e6eb8"
-            },
-            pos: {
-                x: 70,
-                y: 300
-            }
-        })
-        .draw(b64 => {
-            // console.log("4");
-            img.setAttribute("src", b64);
-
-            // console.log(b64);
-        });
-    shareSet(rank, text);
+    img.src = './img/' + imgNo;
+    var rankElement = document.getElementById('rank');
+    rankElement.innerHTML = rank;
+    var textElement = document.getElementById('text');
+    textElement.innerHTML = text_arr[text_n];
+    var nameElement = document.getElementById('name');
+    nameElement.innerHTML = name;
 }
 
 function shareSet(rank, desc) {
