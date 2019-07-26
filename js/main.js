@@ -114,14 +114,106 @@ function getRandom(rank, name, head) {
     var n = Math.floor(Math.random() * 19) + 1;
     console.log(text_arr[n]);
     var imgNo = n + ".jpg";
-    let img = document.getElementById("random-img");
-    img.src = './img/' + imgNo;
-    var rankElement = document.getElementById('rank');
-    rankElement.innerHTML = rank;
-    var textElement = document.getElementById('text');
-    textElement.innerHTML = text_arr[text_n];
-    var nameElement = document.getElementById('name');
-    nameElement.innerHTML = name;
+    var bgPromise = new Promise(function(resolve) {
+            var img = new Image();
+            img.src = "./img/" + imgNo;
+            img.onload = function() {
+                resolve(img);
+            };
+        }),
+        headImgPromise = new Promise(function(resolve) {
+            var img = new Image();
+            img.src = head;
+            img.onload = function() {
+                resolve(img);
+            };
+        });
+
+    var text = text_arr[text_n];
+
+    Promise.all([bgPromise, headImgPromise]).then(function(imgs) {
+        var bg = imgs[0],
+            head = imgs[1];
+        var canvas = document.createElement("canvas");
+        canvas.width = bg.width;
+        canvas.height = bg.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(bg, 0, 0);
+
+        const headCanvas = document.createElement("canvas");
+        headCanvas.width = head.width;
+        headCanvas.height = head.height;
+        headCtx = headCanvas.getContext("2d");
+        var headPattern = headCtx.createPattern(head, "no-repeat");
+        headCtx.beginPath();
+        headCtx.arc(
+            head.width / 2,
+            head.height / 2,
+            head.width / 2,
+            0,
+            2 * Math.PI
+        );
+        headCtx.closePath();
+        headCtx.fillStyle = headPattern;
+        headCtx.fill();
+
+        ctx.drawImage(headCanvas, 60, 160, 180, 180);
+
+        ctx.fillStyle = "#0d6fb8";
+        ctx.font = "italic bold 72px serif";
+        rank = String(rank);
+
+        var rankCenter = 480,
+            rankMiddle = 220;
+        var textMetrics = ctx.measureText(rank);
+
+        ctx.fillText(
+            String(rank),
+            rankCenter - textMetrics.width / 2,
+            rankMiddle + 28
+        );
+
+        ctx.fillStyle = "#fff";
+
+        var textRect = { x: 80, y: 385, h: 244, w: 586 };
+        var textFontSize = 32,
+            textCursorX = textRect.x,
+            textCursorY = textRect.y + textFontSize;
+
+        ctx.font = "italic " + textFontSize + "px serif";
+
+        String(name || "")
+            .split("")
+            .forEach(char => {
+                var textMetrics = ctx.measureText(char);
+                if (textCursorX + textMetrics.width > textRect.x + textRect.w) {
+                    textCursorX = textRect.x;
+                    textCursorY = textCursorY + textFontSize;
+                }
+
+                ctx.fillText(char, textCursorX, textCursorY);
+                textCursorX = textCursorX + textMetrics.width;
+            });
+
+        textCursorX = textCursorX + textFontSize;
+
+        ctx.font = "" + textFontSize + "px serif";
+        String(text || "")
+            .split("")
+            .forEach(char => {
+                var textMetrics = ctx.measureText(char);
+                if (textCursorX + textMetrics.width > textRect.x + textRect.w) {
+                    textCursorX = textRect.x;
+                    textCursorY = textCursorY + textFontSize * 1.5;
+                }
+
+                ctx.fillText(char, textCursorX, textCursorY);
+                textCursorX = textCursorX + textMetrics.width;
+            });
+
+        var imageElement = document.getElementById("random-img");
+        imageElement.src = canvas.toDataURL();
+    });
 }
 
 function shareSet(rank, desc) {
