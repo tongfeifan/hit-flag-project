@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>哈工大百年校庆校旗传递</title>
-    <link href="css/main.css" rel="stylesheet" type="text/css"/>
-    <meta name="description" content="我为校旗传递了xxx米，相当于xxx">
-</head>
-<body>
-<div class="page-content">
-    <div>
-        <!--<div class="text-flag">-->
-            <!--<span>恭喜你成为了第<span id="rank">xx</span>位校旗传递者，分享好友接力</span>-->
-        <!--</div>-->
-        <div class="main-content">
-            <img crossorigin="anonymous" id="random-img" class='img-flag' width='97%' height='100%' >
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>哈工大百年校庆校旗传递</title>
+        <link href="css/main.css" rel="stylesheet" type="text/css" />
+        <meta name="description" content="我为校旗传递了xxx米，相当于xxx" />
+    </head>
+    <body>
+        <div class="page-content">
+            <div>
+                <!--<div class="text-flag">-->
+                <!--<span>恭喜你成为了第<span id="rank">xx</span>位校旗传递者，分享好友接力</span>-->
+                <!--</div>-->
+                <div style="position:relative;">
+                    <img
+                        crossorigin="anonymous"
+                        id="random-img"
+                        class="img-flag"
+                        width="100%"
+                    />
+                    <img
+                        crossorigin="anonymous"
+                        id="head"
+                        style="position:absolute;width:25vw;height:25vw;left:8%;top:11%;border-radius: 12.5vw;"
+                        width="512"
+                        height="512"
+                        src="img/1.jpg"
+                    />
+                    <div
+                        id="rank"
+                        style="position: absolute; left: 51%; top: 12.5%;width: 34vw;height: 10vw;line-height: 10vw;text-align: center; color: #0e6eb8; font-size: 10vw;font-style: italic;"
+                    ></div>
+                    <div
+                        style="position: absolute; top: 26%;left: 12%;width: 80%;height: 16%; color: #fff;"
+                    >
+                        <span id="name" style="font-family: Helvetica, sans-serif; font-style: italic; font-size: 5vw; line-height: 8vw;"></span>&nbsp;
+                        <span id="text" style="font-family:  Helvetica, sans-serif; font-size: 5vw; line-height: 8vw;"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-button">
+                <div class="btn-group">
+                    <!--<button class="btn-primary short" onclick="downPicture()" id="down"></button>-->
+                    <button class="btn-a btn-refresh long" onclick="toFlag()">
+                        再传一次
+                    </button>
+                </div>
+            </div>
         </div>
 
-    </div>
-    <div class="bottom-button">
-        <div class="btn-group">
-            <!--<button class="btn-primary short" onclick="downPicture()" id="down"></button>-->
-            <button class="btn-a btn-refresh long" onclick="toFlag()">再传一次</button>
-        </div>
-    </div>
-</div>
-</body>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            window.onload = function() {
+                weixinInit();
+            };
+        </script>
+    </body>
 </html>
-
-<script type="text/javascript" src="js/mcanvas.min.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/main.js"></script>
-<script>
-    window.onload = function(){
-        weixinInit();
-    };
-</script>
