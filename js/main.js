@@ -173,7 +173,7 @@ function getRandom(rank, name, head) {
 
         ctx.fillStyle = "#cc5841";
         ctx.font =
-            "100px HelveticaNeue,Helvetica,'Heiti SC','Droid Sans',Droidsansfallback,'华文细黑'";
+            "84px HelveticaNeue,Helvetica,'Heiti SC','Droid Sans',Droidsansfallback,'华文细黑'";
         rank = String(rank);
 
         var rankCenter = 500,
