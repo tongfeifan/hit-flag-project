@@ -154,17 +154,30 @@ function getRandom(rank, name, head) {
             2 * Math.PI
         );
         headCtx.closePath();
+        headCtx.fillStyle = "#fff";
+        headCtx.fill();
+
+        headCtx.beginPath();
+        headCtx.arc(
+            head.width / 2,
+            head.height / 2,
+            (head.width / 2) * 0.92,
+            0,
+            2 * Math.PI
+        );
+        headCtx.closePath();
         headCtx.fillStyle = headPattern;
         headCtx.fill();
 
-        ctx.drawImage(headCanvas, 60, 160, 180, 180);
+        ctx.drawImage(headCanvas, 60, 160, 160, 160);
 
-        ctx.fillStyle = "#0d6fb8";
-        ctx.font = "italic bold 72px serif";
+        ctx.fillStyle = "#cc5841";
+        ctx.font =
+            "100px HelveticaNeue,Helvetica,'Heiti SC','Droid Sans',Droidsansfallback,'华文细黑'";
         rank = String(rank);
 
-        var rankCenter = 480,
-            rankMiddle = 220;
+        var rankCenter = 500,
+            rankMiddle = 230;
         var textMetrics = ctx.measureText(rank);
 
         ctx.fillText(
@@ -173,14 +186,13 @@ function getRandom(rank, name, head) {
             rankMiddle + 28
         );
 
-        ctx.fillStyle = "#fff";
-
-        var textRect = { x: 80, y: 385, h: 244, w: 586 };
-        var textFontSize = 32,
+        var textRect = { x: 310, y: 340, w: 375, h: 200 };
+        var textFontSize = 28,
             textCursorX = textRect.x,
             textCursorY = textRect.y + textFontSize;
 
-        ctx.font = "italic " + textFontSize + "px serif";
+        ctx.fillStyle = "#2d5578";
+        ctx.font = "" + textFontSize * 1.2 + "px HelveticaNeue,Helvetica,'Heiti SC','Droid Sans',Droidsansfallback,'华文细黑'";
 
         String(name || "")
             .split("")
@@ -195,9 +207,9 @@ function getRandom(rank, name, head) {
                 textCursorX = textCursorX + textMetrics.width;
             });
 
-        textCursorX = textCursorX + textFontSize;
+        textCursorX = textCursorX + textFontSize * 0.5;
 
-        ctx.font = "" + textFontSize + "px serif";
+        ctx.font = "" + textFontSize + "px HelveticaNeue,Helvetica,'Heiti SC','Droid Sans',Droidsansfallback,'华文细黑'";
         String(text || "")
             .split("")
             .forEach(char => {
